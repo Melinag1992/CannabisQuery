@@ -1,12 +1,16 @@
 package com.example.c4q.cannabisproject.controller;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.c4q.cannabisproject.R;
-import com.example.c4q.cannabisproject.model.Strain;
+import com.example.c4q.cannabisproject.model.Data;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,19 +21,20 @@ import java.util.List;
 
 public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.DetailScreenViewHolder> {
 
-    private List<Strain> strainObject = new ArrayList<>();
-    private List<String> strainNameLsit = new ArrayList<>();
-    private View view;
+    private List<Data> strainObject = new ArrayList<>();
 
-    private DetailAdapter(List<Strain> strains, List<String> namesList){
-        this.strainNameLsit = namesList;
+    private View view;
+    private Context context;
+
+    public DetailAdapter(List<Data> strains, Context context) {
         this.strainObject = strains;
+        this.context = context;
 
     }
 
     @Override
     public DetailScreenViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.strain_item_view, parent, false);
+        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.strain_iv, parent, false);
         return new DetailScreenViewHolder(view);
     }
 
@@ -43,13 +48,30 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.DetailScre
     public int getItemCount() {
         return strainObject.size();
     }
+
     class DetailScreenViewHolder extends RecyclerView.ViewHolder {
+        private TextView name;
+        private ImageView imageV;
+        private TextView url;
 
         public DetailScreenViewHolder(View itemView) {
             super(itemView);
+            name = itemView.findViewById(R.id.name);
+            imageV = itemView.findViewById(R.id.image_view);
+
         }
 
-        public void onBind(Strain strain) {
+
+
+        public void onBind(Data strain) {
+
+            name.setText(strain.getName());
+
+           Picasso.with(context)
+                   .load(strain.getImage())
+                   .resize(400,400)
+                   .centerCrop()
+                   .into(imageV);
         }
     }
 }

@@ -3,8 +3,11 @@ package com.example.c4q.cannabisproject;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+import com.example.c4q.cannabisproject.controller.DetailAdapter;
 import com.example.c4q.cannabisproject.model.OuterObject;
 import com.example.c4q.cannabisproject.model.Data;
 import com.example.c4q.cannabisproject.network.OrbetaAPI;
@@ -28,7 +31,11 @@ public class StrainDetailScreen extends AppCompatActivity {
 
 
 //    private List<String> strainNameList = new ArrayList<>();
-    private List<Data> strainObjects = new ArrayList<>();
+    List<Data> strainObjects = new ArrayList<>();
+    private String name;
+    private String url;
+    private String image;
+    RecyclerView recyclerView;
 //    private HashMap<String, Strain> strainName;
 //    private RecyclerView recyclerView;
 
@@ -37,14 +44,15 @@ public class StrainDetailScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_strain);
 
-//        RecyclerView recyclerView = findViewById(R.id.recycler_view);
-//        GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 3);
-//        recyclerView.setLayoutManager(gridLayoutManager);
-        setRetrofit();
+        recyclerView = findViewById(R.id.recycler_view);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 3);
+        recyclerView.setLayoutManager(gridLayoutManager);
+        setRetrofit(recyclerView);
 
     }
 
-    public void setRetrofit() {
+    public void setRetrofit(final RecyclerView recycView) {
+        this.recyclerView = recycView;
 
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -63,10 +71,19 @@ public class StrainDetailScreen extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     strainObjects.clear();
                     strainObjects = response.body().getData();
-                Log.d(TAG, "onResponse: " + strainObjects.toString());
+
+
+
+                    for (int i = 0; i < strainObjects.size(); i++) {
+                       name = strainObjects.get(i).getName();
+                       image = strainObjects.get(i).getImage();
+                       url = strainObjects.get(i).getUrl();
+                    }
+                Log.d(TAG, "onResponse: " + name + " " + url );
+
+                    DetailAdapter detailAdapter = new DetailAdapter(strainObjects,getApplicationContext());
+                    recycView.setAdapter(detailAdapter);
                 }
-
-
 
             }
 

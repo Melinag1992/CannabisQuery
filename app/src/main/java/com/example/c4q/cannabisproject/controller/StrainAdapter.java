@@ -18,12 +18,12 @@ import java.util.List;
 
 public class StrainAdapter extends RecyclerView.Adapter<StrainAdapter.StrainViewHolder> {
 
-    private List<Strain> strainList = new ArrayList<>();
+     List<Strain> strains = new ArrayList<>();
     private View view;
 
 
     public StrainAdapter(List<Strain> strainList){
-        this.strainList = strainList;
+        this.strains = strainList;
 
     }
 
@@ -36,14 +36,14 @@ public class StrainAdapter extends RecyclerView.Adapter<StrainAdapter.StrainView
 
     @Override
     public void onBindViewHolder(StrainViewHolder holder, int position) {
-        holder.onBind(strainList.get(position));
+        holder.onBind(strains.get(position));
 
 
     }
 
     @Override
     public int getItemCount() {
-        return strainList.size();
+        return strains.size();
     }
 
     class StrainViewHolder extends RecyclerView.ViewHolder {

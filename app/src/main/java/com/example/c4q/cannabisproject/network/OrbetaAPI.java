@@ -11,6 +11,6 @@ import retrofit2.http.GET;
 
 public interface OrbetaAPI {
 
-    @GET("strains")
+    @GET("strains?count=90&sort=name")
     Call<OuterObject> getdata();
 }

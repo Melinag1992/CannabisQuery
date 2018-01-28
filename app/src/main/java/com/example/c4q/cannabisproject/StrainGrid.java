@@ -42,8 +42,9 @@ public class StrainGrid extends AppCompatActivity {
     }
     public void setRetrofit(RecyclerView recyclerView) {
         final RecyclerView recView = recyclerView;
+
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("api.otreeba.com/v1/")
+                .baseUrl("http://strainapi.evanbusse.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -54,10 +55,9 @@ public class StrainGrid extends AppCompatActivity {
             public void onResponse(Call<List<Strain>> call, Response<List<Strain>> response) {
 
                 List<Strain> strainList = new ArrayList<>();
-                strainList.addAll(response.body());
+                strainList = response.body();
 
-
-
+                Log.d(TAG, "onResponse: " + strainList);
                 StrainAdapter adapter = new StrainAdapter(strainList);
                 recView.setAdapter(adapter);
             }

@@ -17,7 +17,5 @@ public interface StrainAPI {
     Call<List<Strain>> getDescripStrain();
 
 
-    @GET("strains/search/all")
-    Call<HashMap<String,Strain>> getAllStrain();
 
 }

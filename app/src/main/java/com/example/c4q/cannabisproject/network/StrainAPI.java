@@ -1,5 +1,6 @@
 package com.example.c4q.cannabisproject.network;
 
+import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
@@ -14,7 +15,7 @@ public interface StrainAPI {
     Call<List<Strain>> getDescripStrain();
 
 
-    @GET("/strains/search/all")
-    Call<Strain> getAllStrain();
+    @GET("strains/search/all")
+    Call<HashMap<String,Strain>> getAllStrain();
 
 }

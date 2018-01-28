@@ -1,6 +1,7 @@
 package com.example.c4q.cannabisproject.network;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ public class StrainAdapter extends RecyclerView.Adapter<StrainAdapter.StrainView
 
     private List<Strain> strainList = new ArrayList<>();
     private View view;
+
 
     StrainAdapter(List<Strain> strainList){
         this.strainList = strainList;
@@ -45,19 +47,19 @@ public class StrainAdapter extends RecyclerView.Adapter<StrainAdapter.StrainView
     }
 
     class StrainViewHolder extends RecyclerView.ViewHolder {
-        private TextView name;
+//        private TextView name;
         private TextView race;
 
         public StrainViewHolder(View itemView) {
             super(itemView);
 
             race = itemView.findViewById(R.id.race);
-            name = itemView.findViewById(R.id.name);
+//            name = itemView.findViewById(R.id.name);
         }
         public void onBind(Strain strain){
 
             race.setText("Type: " + strain.getRace());
-            name.setText(strain.getName());
+//            name.setText(strain.getName());
 
         }
     }

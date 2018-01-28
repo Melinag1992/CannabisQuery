@@ -11,10 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.c4q.cannabisproject.R;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,6 +31,11 @@ import static android.content.ContentValues.TAG;
  */
 public class StrainNameFragment extends Fragment {
     private View view;
+    Strain strain;
+    List<String> strainNameList = new ArrayList<>();
+    List<Strain> strainObjects = new ArrayList<>();
+    protected HashMap<String, Strain> strainName;
+    private RecyclerView recyclerView;
 
     public StrainNameFragment() {
         // Required empty public constructor
@@ -41,17 +48,17 @@ public class StrainNameFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_strain_name, container, false);
 //
-//        RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
-//        GridLayoutManager gridLayoutManager = new GridLayoutManager(view.getContext(), 3);
-//        recyclerView.setLayoutManager(gridLayoutManager);
-//        setRetrofit(recyclerView);
+        RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(view.getContext(), 3);
+        recyclerView.setLayoutManager(gridLayoutManager);
+        setRetrofit(recyclerView);
 
 
         return view;
     }
 
-    public void setRetrofit() {
-//        RecyclerView recycView = recyclerView;
+    public void setRetrofit(RecyclerView recycView) {
+        this.recyclerView = recycView;
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://strainapi.evanbusse.com/6oJPfWj/")
@@ -60,26 +67,26 @@ public class StrainNameFragment extends Fragment {
 
 
         StrainAPI strainBaseService = retrofit.create(StrainAPI.class);
-        Call<Strain> getStrainList = strainBaseService.getAllStrain();
-        getStrainList.enqueue(new Callback<Strain>() {
+        Call<HashMap<String,Strain>> getAllStrain = strainBaseService.getAllStrain();
+        getAllStrain.enqueue(new Callback<HashMap<String,Strain>>() {
             @Override
-            public void onResponse(Call<Strain> call, Response<Strain> response) {
+            public void onResponse(Call<HashMap<String,Strain>> call, Response<HashMap<String,Strain>> response) {
 
-                List<String> strainList = new ArrayList<>();
-                strainList.add(response.body().toString());
+                strainName = response.body();
 
-                HashMap<String,String> strainHashMap = new HashMap<>();
-                for (int i = 0; i <strainList.size() ; i++) {
-                   strainHashMap.put("name",strainList.get(i).toString());
-                    Log.d(TAG, "onResponse: " + strainHashMap.get("name"));
+
+                for(Map.Entry<String, Strain> entry: strainName.entrySet()) {
+                    strainNameList.add(entry.getKey());
+                    strainObjects.add(entry.getValue());
                 }
 
-//                StrainAdapter adapter = new StrainAdapter(strainList);
-//                recyclerView.setAdapter(adapter);
+//                Log.d(TAG, "onResponse: " + strainNameList.toString());
+                StrainAdapter adapter = new StrainAdapter(strainObjects);
+                recyclerView.setAdapter(adapter);
             }
 
             @Override
-            public void onFailure(Call<Strain> call, Throwable t) {
+            public void onFailure(Call<HashMap<String,Strain>> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t);
 
             }

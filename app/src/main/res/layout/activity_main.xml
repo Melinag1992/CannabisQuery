@@ -1,25 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.c4q.cannabisproject.MainActivity">
 
-
-
-
-    <FrameLayout
-        android:id="@+id/frag_container"
-        android:layout_width="match_parent"
-        android:layout_height="450dp"/>
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/navigation"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:attr/windowBackground"
-        app:menu="@menu/navigation" />
+        android:layout_above="@+id/buttonpanel"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="143dp"
+        android:gravity="center"
+        android:text="Cannabis Query"
+        android:textSize="30sp"
+        android:id="@+id/textView" />
 
-</LinearLayout>
+    <Button
+        android:id="@+id/buttonpanel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="77dp"
+        android:layout_marginStart="88dp"
+        android:gravity="center"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_marginStart="16dp"
+        android:layout_toEndOf="@+id/buttonpanel"
+        android:text="details" />
+
+
+
+
+</RelativeLayout>

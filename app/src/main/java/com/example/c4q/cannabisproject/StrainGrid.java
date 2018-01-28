@@ -1,21 +1,19 @@
-package com.example.c4q.cannabisproject.network;
-
+package com.example.c4q.cannabisproject;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 
 import com.example.c4q.cannabisproject.R;
+import com.example.c4q.cannabisproject.controller.StrainAdapter;
+import com.example.c4q.cannabisproject.model.Strain;
+import com.example.c4q.cannabisproject.network.StrainAPI;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,37 +24,26 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static android.content.ContentValues.TAG;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Created by melg on 1/28/18.
  */
-public class AllStrainFragment extends Fragment {
-    private View view;
 
-    public AllStrainFragment() {
-        // Required empty public constructor
-    }
-
-
+public class StrainGrid extends AppCompatActivity {
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_all_strain, container, false);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.grid_strain);
 
 
-        RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(view.getContext(), 3);
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 3);
         recyclerView.setLayoutManager(gridLayoutManager);
         setRetrofit(recyclerView);
 
-
-        return view;
-
     }
-
     public void setRetrofit(RecyclerView recyclerView) {
         final RecyclerView recView = recyclerView;
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://strainapi.evanbusse.com/6oJPfWj/")
+                .baseUrl("api.otreeba.com/v1/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -68,8 +55,6 @@ public class AllStrainFragment extends Fragment {
 
                 List<Strain> strainList = new ArrayList<>();
                 strainList.addAll(response.body());
-
-
 
 
 
@@ -85,5 +70,4 @@ public class AllStrainFragment extends Fragment {
         });
 
     }
-
 }

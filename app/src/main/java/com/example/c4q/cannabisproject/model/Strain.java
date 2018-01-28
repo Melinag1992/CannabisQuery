@@ -1,4 +1,4 @@
-package com.example.c4q.cannabisproject.network;
+package com.example.c4q.cannabisproject.model;
 
 import java.util.List;
 

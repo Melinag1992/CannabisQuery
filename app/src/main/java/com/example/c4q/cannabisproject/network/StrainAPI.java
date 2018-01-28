@@ -1,5 +1,7 @@
 package com.example.c4q.cannabisproject.network;
 
+import com.example.c4q.cannabisproject.model.Strain;
+
 import java.util.HashMap;
 import java.util.List;
 

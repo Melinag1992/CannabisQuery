@@ -1,13 +1,13 @@
-package com.example.c4q.cannabisproject.network;
+package com.example.c4q.cannabisproject.controller;
 
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.c4q.cannabisproject.R;
+import com.example.c4q.cannabisproject.model.Strain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ public class StrainAdapter extends RecyclerView.Adapter<StrainAdapter.StrainView
     private View view;
 
 
-    StrainAdapter(List<Strain> strainList){
+    public StrainAdapter(List<Strain> strainList){
         this.strainList = strainList;
 
     }
@@ -47,19 +47,19 @@ public class StrainAdapter extends RecyclerView.Adapter<StrainAdapter.StrainView
     }
 
     class StrainViewHolder extends RecyclerView.ViewHolder {
-//        private TextView name;
+        private TextView name;
         private TextView race;
 
         public StrainViewHolder(View itemView) {
             super(itemView);
 
             race = itemView.findViewById(R.id.race);
-//            name = itemView.findViewById(R.id.name);
+            name = itemView.findViewById(R.id.name);
         }
         public void onBind(Strain strain){
 
             race.setText("Type: " + strain.getRace());
-//            name.setText(strain.getName());
+            name.setText(strain.getName());
 
         }
     }

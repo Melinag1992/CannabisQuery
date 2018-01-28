@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CannabisProject.iml" filepath="$PROJECT_DIR$/CannabisProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CannabisQuery.iml" filepath="$PROJECT_DIR$/CannabisQuery.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

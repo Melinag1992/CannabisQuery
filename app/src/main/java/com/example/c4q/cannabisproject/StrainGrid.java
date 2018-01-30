@@ -7,10 +7,10 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
-import com.example.c4q.cannabisproject.R;
-import com.example.c4q.cannabisproject.controller.StrainAdapter;
-import com.example.c4q.cannabisproject.model.Strain;
-import com.example.c4q.cannabisproject.network.StrainAPI;
+import com.example.c4q.cannabisproject.controller.DetailAdapter;
+import com.example.c4q.cannabisproject.model.ListOfStrains;
+import com.example.c4q.cannabisproject.model.Data;
+import com.example.c4q.cannabisproject.network.OrbetaAPI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,42 +28,67 @@ import static android.content.ContentValues.TAG;
  */
 
 public class StrainGrid extends AppCompatActivity {
+
+
+//    private List<String> strainNameList = new ArrayList<>();
+    List<Data> strainObjects = new ArrayList<>();
+    private String name;
+    private String url;
+    private String image;
+    RecyclerView recyclerView;
+//    private HashMap<String, Strain> strainName;
+//    private RecyclerView recyclerView;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.grid_strain);
+        setContentView(R.layout.detail_strain);
 
-
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 3);
+        recyclerView = findViewById(R.id.recycler_view);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
         recyclerView.setLayoutManager(gridLayoutManager);
         setRetrofit(recyclerView);
 
     }
-    public void setRetrofit(RecyclerView recyclerView) {
-        final RecyclerView recView = recyclerView;
+
+    public void setRetrofit(final RecyclerView recycView) {
+        this.recyclerView = recycView;
+
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://strainapi.evanbusse.com/")
+                .baseUrl("https://api.otreeba.com/v1/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        StrainAPI strainBaseService = retrofit.create(StrainAPI.class);
-        Call<List<Strain>> getStrainList = strainBaseService.getDescripStrain();
-        getStrainList.enqueue(new Callback<List<Strain>>() {
+
+        OrbetaAPI orbetaAPI = retrofit.create(OrbetaAPI.class);
+        Call<ListOfStrains> getData = orbetaAPI.getdata();
+
+        getData.enqueue(new Callback<ListOfStrains>() {
             @Override
-            public void onResponse(Call<List<Strain>> call, Response<List<Strain>> response) {
+            public void onResponse(Call<ListOfStrains> call, Response<ListOfStrains> response) {
 
-                List<Strain> strainList = new ArrayList<>();
-                strainList = response.body();
+                if (response.isSuccessful()) {
+                    strainObjects.clear();
+                    strainObjects = response.body().getData();
 
-                Log.d(TAG, "onResponse: " + strainList);
-                StrainAdapter adapter = new StrainAdapter(strainList);
-                recView.setAdapter(adapter);
+
+
+                    for (int i = 0; i < strainObjects.size(); i++) {
+                       name = strainObjects.get(i).getName();
+                       image = strainObjects.get(i).getImage();
+                       url = strainObjects.get(i).getUrl();
+                    }
+                Log.d(TAG, "onResponse: " + name + " " + url );
+
+                    DetailAdapter detailAdapter = new DetailAdapter(strainObjects,getApplicationContext());
+                    recycView.setAdapter(detailAdapter);
+                }
+
             }
 
             @Override
-            public void onFailure(Call<List<Strain>> call, Throwable t) {
+            public void onFailure(Call<ListOfStrains> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t);
 
             }

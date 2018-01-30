@@ -6,7 +6,7 @@ import java.util.List;
  * Created by melg on 1/28/18.
  */
 
-public class OuterObject {
+public class ListOfStrains {
     List<Data> data;
 
 

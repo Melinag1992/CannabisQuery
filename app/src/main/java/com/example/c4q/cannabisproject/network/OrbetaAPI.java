@@ -1,6 +1,6 @@
 package com.example.c4q.cannabisproject.network;
 
-import com.example.c4q.cannabisproject.model.OuterObject;
+import com.example.c4q.cannabisproject.model.ListOfStrains;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -11,6 +11,6 @@ import retrofit2.http.GET;
 
 public interface OrbetaAPI {
 
-    @GET("strains?count=90&sort=name")
-    Call<OuterObject> getdata();
+    @GET("strains?count=50")
+    Call<ListOfStrains> getdata();
 }

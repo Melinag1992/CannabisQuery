@@ -8,7 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.c4q.cannabisproject.CustomRetroFitService;
 import com.example.c4q.cannabisproject.R;
+import com.example.c4q.cannabisproject.StrainGrid;
 import com.example.c4q.cannabisproject.model.Data;
 import com.example.c4q.cannabisproject.model.Meta;
 import com.squareup.picasso.Picasso;
@@ -22,11 +24,13 @@ import java.util.List;
 
 public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.DetailScreenViewHolder> {
 
+
     private List<Data> strainObject = new ArrayList<>();
-
-
     private View view;
     private Context context;
+
+
+
 
     public DetailAdapter(List<Data> strains,Context context) {
         this.strainObject = strains;
@@ -41,6 +45,7 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.DetailScre
 
     @Override
     public void onBindViewHolder(DetailScreenViewHolder holder, int position) {
+
         holder.onBind(strainObject.get(position));
 
     }
@@ -63,16 +68,15 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.DetailScre
         }
 
 
-
         public void onBind(Data strain) {
 
             name.setText(strain.getName());
 
-           Picasso.with(context)
-                   .load(strain.getImage())
-                   .resize(400,400)
-                   .centerCrop()
-                   .into(imageV);
+            Picasso.with(context)
+                    .load(strain.getImage())
+                    .resize(400, 400)
+                    .centerCrop()
+                    .into(imageV);
         }
     }
 }

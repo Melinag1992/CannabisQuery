@@ -3,13 +3,16 @@ package com.example.c4q.cannabisproject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
 
-private Button detailButton;
+    private Button detailButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,5 +30,6 @@ private Button detailButton;
 
 
     }
+
 
 }

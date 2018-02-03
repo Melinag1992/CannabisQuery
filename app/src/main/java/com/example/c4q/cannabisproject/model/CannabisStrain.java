@@ -6,12 +6,24 @@ import java.io.Serializable;
  * Created by melg on 1/28/18.
  */
 
-public class Data {
+public class CannabisStrain {
 
+    private String ocpc;
     private String image;
     private String url;
     private String name;
-    private String ocpc;
+
+
+    public CannabisStrain(){
+
+    }
+
+    public CannabisStrain(String ocpc, String image, String url, String name) {
+        this.ocpc = ocpc;
+        this.image = image;
+        this.url = url;
+        this.name = name;
+    }
 
     public String getOcpc() {
         return ocpc;

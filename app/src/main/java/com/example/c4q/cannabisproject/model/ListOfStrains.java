@@ -7,7 +7,7 @@ import java.util.List;
  */
 
 public class ListOfStrains {
-    List<Data> data;
+    List<CannabisStrain> data;
     public Meta meta;
 
     public Meta getMeta() {
@@ -25,11 +25,11 @@ public class ListOfStrains {
 
 
 
-    public List<Data> getData() {
+    public List<CannabisStrain> getData() {
         return data;
     }
 
-    public void setData(List<Data> data) {
+    public void setData(List<CannabisStrain> data) {
         this.data = data;
     }
 

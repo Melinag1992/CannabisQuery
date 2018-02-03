@@ -15,9 +15,8 @@ import android.view.View;
 
 import com.example.c4q.cannabisproject.controller.DetailAdapter;
 import com.example.c4q.cannabisproject.model.ListOfStrains;
-import com.example.c4q.cannabisproject.model.Data;
+import com.example.c4q.cannabisproject.model.CannabisStrain;
 import com.example.c4q.cannabisproject.model.Meta;
-import com.example.c4q.cannabisproject.network.OrbetaAPI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +24,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.content.ContentValues.TAG;
 
@@ -38,7 +35,7 @@ public class StrainGrid extends AppCompatActivity {
 
 
     //    private List<String> strainNameList = new ArrayList<>();
-    List<Data> strainObjects = new ArrayList<>();
+    List<CannabisStrain> strainObjects = new ArrayList<>();
     Meta metaObjects;
     private String name;
     private String url;

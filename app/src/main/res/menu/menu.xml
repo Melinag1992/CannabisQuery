@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/all_strain"
+        android:title="Filter"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/name"
+        android:title="A-Z" />
+    <item
+        android:id="@+id/negative_name"
+        android:title="Z-A" />
+
+    <item
+        android:id="@+id/new_added"
+        android:title="Newest" />
+    <item
+        android:id="@+id/old_added"
+        android:title="Oldest" />
+
+</menu>

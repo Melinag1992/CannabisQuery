@@ -20,7 +20,7 @@ private Button detailButton;
         detailButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(),StrainGrid.class);
+                Intent i = new Intent(getApplicationContext(), StrainGrid.class);
                 startActivity(i);
             }
         });

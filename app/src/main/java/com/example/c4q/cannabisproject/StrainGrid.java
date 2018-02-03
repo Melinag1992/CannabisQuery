@@ -10,6 +10,7 @@ import android.util.Log;
 import com.example.c4q.cannabisproject.controller.DetailAdapter;
 import com.example.c4q.cannabisproject.model.ListOfStrains;
 import com.example.c4q.cannabisproject.model.Data;
+import com.example.c4q.cannabisproject.model.Meta;
 import com.example.c4q.cannabisproject.network.OrbetaAPI;
 
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ public class StrainGrid extends AppCompatActivity {
 
 //    private List<String> strainNameList = new ArrayList<>();
     List<Data> strainObjects = new ArrayList<>();
+    Meta metaObjects;
     private String name;
     private String url;
     private String image;
@@ -71,6 +73,9 @@ public class StrainGrid extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     strainObjects.clear();
                     strainObjects = response.body().getData();
+                    response.body().getMeta();
+                    metaObjects = response.body().getMeta();
+
 
 
 
@@ -79,6 +84,7 @@ public class StrainGrid extends AppCompatActivity {
                        image = strainObjects.get(i).getImage();
                        url = strainObjects.get(i).getUrl();
                     }
+
                 Log.d(TAG, "onResponse: " + name + " " + url );
 
                     DetailAdapter detailAdapter = new DetailAdapter(strainObjects,getApplicationContext());

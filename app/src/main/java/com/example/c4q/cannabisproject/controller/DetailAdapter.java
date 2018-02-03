@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.c4q.cannabisproject.R;
 import com.example.c4q.cannabisproject.model.Data;
+import com.example.c4q.cannabisproject.model.Meta;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -23,13 +24,13 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.DetailScre
 
     private List<Data> strainObject = new ArrayList<>();
 
+
     private View view;
     private Context context;
 
-    public DetailAdapter(List<Data> strains, Context context) {
+    public DetailAdapter(List<Data> strains,Context context) {
         this.strainObject = strains;
         this.context = context;
-
     }
 
     @Override

@@ -8,6 +8,21 @@ import java.util.List;
 
 public class ListOfStrains {
     List<Data> data;
+    public Meta meta;
+
+    public Meta getMeta() {
+        return meta;
+    }
+
+    public void setMeta(Meta meta) {
+        this.meta = meta;
+    }
+
+
+
+
+
+
 
 
     public List<Data> getData() {

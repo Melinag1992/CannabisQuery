@@ -5,18 +5,20 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.c4q.cannabisproject.CustomRetroFitService;
 import com.example.c4q.cannabisproject.R;
-import com.example.c4q.cannabisproject.StrainGrid;
-import com.example.c4q.cannabisproject.model.Data;
-import com.example.c4q.cannabisproject.model.Meta;
+import com.example.c4q.cannabisproject.database.CannabisDBHelper;
+import com.example.c4q.cannabisproject.model.CannabisStrain;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.c4q.cannabisproject.database.CannabisDBContract.CannabisEntry._STATUS_FAV;
+import static com.example.c4q.cannabisproject.database.CannabisDBContract.CannabisEntry._STATUS_WISH;
 
 /**
  * Created by melg on 1/28/18.
@@ -25,14 +27,14 @@ import java.util.List;
 public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.DetailScreenViewHolder> {
 
 
-    private List<Data> strainObject = new ArrayList<>();
+    private List<CannabisStrain> strainObject = new ArrayList<>();
     private View view;
     private Context context;
 
 
 
 
-    public DetailAdapter(List<Data> strains,Context context) {
+    public DetailAdapter(List<CannabisStrain> strains, Context context) {
         this.strainObject = strains;
         this.context = context;
     }
@@ -59,16 +61,19 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.DetailScre
         private TextView name;
         private ImageView imageV;
         private TextView url;
+        private Button favButton;
+        private Button wishButton;
 
         public DetailScreenViewHolder(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
             imageV = itemView.findViewById(R.id.image_view);
-
+            favButton = itemView.findViewById(R.id.favorite_strain_button);
+            wishButton = itemView.findViewById(R.id.wish_strain_button);
         }
 
 
-        public void onBind(Data strain) {
+        public void onBind(final CannabisStrain strain) {
 
             name.setText(strain.getName());
 
@@ -77,6 +82,23 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.DetailScre
                     .resize(400, 400)
                     .centerCrop()
                     .into(imageV);
+            favButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CannabisDBHelper dbHelper = new CannabisDBHelper(context);
+                    dbHelper.insertStrain(strain, _STATUS_FAV);
+                    dbHelper.close();
+                }
+            });
+
+            wishButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CannabisDBHelper dbHelper = new CannabisDBHelper(context);
+                    dbHelper.insertStrain(strain, _STATUS_WISH);
+                    dbHelper.close();
+                }
+            });
         }
     }
 }

@@ -3,6 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/fav_list"
+        android:title="Fav"
+        app:showAsAction="always"
+        />
+    <item
+        android:id="@+id/wish_list"
+        android:title="Wish"
+        app:showAsAction="always"
+        />
+    <item
         android:id="@+id/all_strain"
         android:title="Filter"
         app:showAsAction="always"

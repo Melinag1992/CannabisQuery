@@ -25,11 +25,24 @@
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
         <ImageView
             android:id="@+id/image_view"
             android:src="@mipmap/ic_launcher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/favorite_strain_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="fav"
+            android:background="@android:drawable/btn_star_big_off"/>
+        <Button
+            android:id="@+id/wish_strain_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="wish"
+            android:background="@android:drawable/btn_star_big_off"/>
 
     </LinearLayout>
 

@@ -187,6 +187,7 @@ public class StrainGrid extends AppCompatActivity {
                 getName.enqueue(new Callback<ListOfStrains>() {
                     @Override
                     public void onResponse(Call<ListOfStrains> call, Response<ListOfStrains> response) {
+                        strainObjects.clear();
                         setUI(response, recyclerView);
                         Log.d(TAG, "onResponse: " + " get page success");
                     }
@@ -207,6 +208,7 @@ public class StrainGrid extends AppCompatActivity {
                 getNegativeName.enqueue(new Callback<ListOfStrains>() {
                     @Override
                     public void onResponse(Call<ListOfStrains> call, Response<ListOfStrains> response) {
+                        strainObjects.clear();
                         setUI(response, recyclerView);
                         Log.d(TAG, "onResponse: " + " get page success");
                     }
@@ -227,6 +229,7 @@ public class StrainGrid extends AppCompatActivity {
                 getNewlyAdded.enqueue(new Callback<ListOfStrains>() {
                     @Override
                     public void onResponse(Call<ListOfStrains> call, Response<ListOfStrains> response) {
+                        strainObjects.clear();
                         setUI(response, recyclerView);
                         Log.d(TAG, "onResponse: " + " get page success");
                     }
@@ -247,6 +250,7 @@ public class StrainGrid extends AppCompatActivity {
                 getOldestAdded.enqueue(new Callback<ListOfStrains>() {
                     @Override
                     public void onResponse(Call<ListOfStrains> call, Response<ListOfStrains> response) {
+                        strainObjects.clear();
                         setUI(response, recyclerView);
                         Log.d(TAG, "onResponse: " + " get page success");
                     }

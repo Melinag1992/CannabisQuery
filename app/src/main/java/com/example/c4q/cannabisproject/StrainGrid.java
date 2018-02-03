@@ -37,6 +37,7 @@ public class StrainGrid extends AppCompatActivity {
     private String name;
     private String url;
     private String image;
+    private String ucpc;
     RecyclerView recyclerView;
 //    private HashMap<String, Strain> strainName;
 //    private RecyclerView recyclerView;
@@ -70,6 +71,8 @@ public class StrainGrid extends AppCompatActivity {
             @Override
             public void onResponse(Call<ListOfStrains> call, Response<ListOfStrains> response) {
 
+                Log.d(TAG, "onResponse: "+response.body().getData().toString());
+
                 if (response.isSuccessful()) {
                     strainObjects.clear();
                     strainObjects = response.body().getData();
@@ -83,9 +86,12 @@ public class StrainGrid extends AppCompatActivity {
                        name = strainObjects.get(i).getName();
                        image = strainObjects.get(i).getImage();
                        url = strainObjects.get(i).getUrl();
+                       ucpc = strainObjects.get(i).getOcpc();
+                        Log.d(TAG, "onResponse: " + name + " " + url + " ucpc: " + ucpc);
+
                     }
 
-                Log.d(TAG, "onResponse: " + name + " " + url );
+
 
                     DetailAdapter detailAdapter = new DetailAdapter(strainObjects,getApplicationContext());
                     recycView.setAdapter(detailAdapter);

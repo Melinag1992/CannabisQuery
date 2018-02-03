@@ -11,7 +11,11 @@ public class Data {
     private String image;
     private String url;
     private String name;
+    private String ocpc;
 
+    public String getOcpc() {
+        return ocpc;
+    }
 
     public String getImage() {
         return image;

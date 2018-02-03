@@ -80,7 +80,7 @@ public class StrainGrid extends AppCompatActivity {
                     if (current_page + 1 <= total_page) {
                         Call<ListOfStrains> getpage = CustomRetroFitService.getInstance()
                                 .getApi()
-                                .getpage(50, sortby, ++current_page);
+                                .getpage(20, sortby, ++current_page);
                         getpage.enqueue(new Callback<ListOfStrains>() {
                             @Override
                             public void onResponse(Call<ListOfStrains> call, Response<ListOfStrains> response) {
@@ -113,7 +113,7 @@ public class StrainGrid extends AppCompatActivity {
 
         Call<ListOfStrains> getData = CustomRetroFitService.getInstance()
                 .getApi()
-                .getdata(50, sortby);
+                .getdata(20, sortby);
 
         getData.enqueue(new Callback<ListOfStrains>() {
             @Override
@@ -154,7 +154,7 @@ public class StrainGrid extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.fav_list:
+            /*case R.id.fav_list:
                 setTitle("Favorite Strains");
                 CannabisDBHelper dbHelper = new CannabisDBHelper(getApplicationContext());
                 Log.d(TAG, "strainObjects size before" + strainObjects.size());
@@ -178,7 +178,7 @@ public class StrainGrid extends AppCompatActivity {
                 detailAdapter.notifyDataSetChanged();
                 fdbHelper.close();
                 return true;
-
+*/
             case R.id.name:
                 sortby = "name";
                 Call<ListOfStrains> getName = CustomRetroFitService.getInstance()

@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.c4q.cannabisproject.controller.DetailAdapter;
+import com.example.c4q.cannabisproject.database.CannabisDBHelper;
 import com.example.c4q.cannabisproject.model.ListOfStrains;
 import com.example.c4q.cannabisproject.model.CannabisStrain;
 import com.example.c4q.cannabisproject.model.Meta;
@@ -76,7 +77,6 @@ public class StrainGrid extends AppCompatActivity {
                 if (lastVisisibleItem == strainObjects.size() - 1) {
 
 
-
                     if (current_page + 1 <= total_page) {
                         Call<ListOfStrains> getpage = CustomRetroFitService.getInstance()
                                 .getApi()
@@ -95,7 +95,6 @@ public class StrainGrid extends AppCompatActivity {
 
                             }
                         });
-
 
 
                     }
@@ -155,6 +154,31 @@ public class StrainGrid extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.fav_list:
+                setTitle("Favorite Strains");
+                CannabisDBHelper dbHelper = new CannabisDBHelper(getApplicationContext());
+                Log.d(TAG, "strainObjects size before" + strainObjects.size());
+                strainObjects.clear();//clears the pagination
+                strainObjects.addAll(dbHelper.getFavStrainList());//add all instead of equals because reference to
+                //the list is hard coded to adapter
+
+                Log.d(TAG, "strainObjects size" + strainObjects.size());
+                detailAdapter.notifyDataSetChanged();
+                dbHelper.close();
+                return true;
+            case R.id.wish_list:
+                setTitle("Wish List");
+                CannabisDBHelper fdbHelper = new CannabisDBHelper(getApplicationContext());
+                Log.d(TAG, "strainObjects size before" + strainObjects.size());
+                strainObjects.clear();//clears the pagination
+                strainObjects.addAll(fdbHelper.getWishStrainList());//add all instead of equals because reference to
+                //the list is hard coded to adapter
+
+                Log.d(TAG, "strainObjects size" + strainObjects.size());
+                detailAdapter.notifyDataSetChanged();
+                fdbHelper.close();
+                return true;
+
             case R.id.name:
                 sortby = "name";
                 Call<ListOfStrains> getName = CustomRetroFitService.getInstance()
@@ -240,7 +264,7 @@ public class StrainGrid extends AppCompatActivity {
         }
     }
 
-    ;
+
 
 
 }

@@ -1,12 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/lime</item>
         <item name="colorPrimaryDark">@color/darkLime</item>
         <item name="colorAccent">@color/lightLime</item>
         <item name="android:colorBackground">@color/superPaleGreen</item>
+        <item name="android:navigationBarColor">@color/darkLime</item>
         <item name="android:colorForeground">@color/lime</item>
         <item name="android:textColorPrimaryInverse">@color/paleGreen</item>
         <item name="android:textColorPrimary">@color/darkLime</item>
@@ -14,17 +15,16 @@
         <item name="android:textColorSecondaryInverse">@color/paleGreen</item>
     </style>
 
-    <style name="Cannabis" parent="AppTheme" >
+    <style name="Cannabis" parent="AppTheme">
         <item name="colorPrimary">@color/lime</item>
         <item name="android:colorForeground">@color/superPaleGreen</item>
         <item name="android:textColorPrimary">@color/lime</item>
         <item name="android:colorBackground">@color/superPaleGreen</item>
         <item name="colorPrimaryDark">@color/darkLime</item>
+        <item name="android:statusBarColor">@color/darkLime</item>
+        <item name="android:navigationBarColor">@color/darkLime</item>
         <item name="android:textColorSecondary">@color/darkLime</item>
         <item name="android:textColorSecondaryInverse">@color/pastelGreen</item>
         <item name="android:textColorPrimaryInverse">@color/pastelGreen</item>
     </style>
-
-    <style name="CannabisNew" parent="Cannabis" />
-
 </resources>

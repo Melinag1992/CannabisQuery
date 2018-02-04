@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
@@ -61,7 +62,7 @@ public class StrainGrid extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recycler_view);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
-        recyclerView.setLayoutManager(gridLayoutManager);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         detailAdapter = new DetailAdapter(strainObjects, getApplicationContext());
         recyclerView.setAdapter(detailAdapter);
 
@@ -71,7 +72,7 @@ public class StrainGrid extends AppCompatActivity {
             public void onScrollChange(View view, int i, int i1, int i2, int i3) {
 
 
-                int lastVisisibleItem = ((GridLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
+                int lastVisisibleItem = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
 
 
                 if (lastVisisibleItem == strainObjects.size() - 1) {

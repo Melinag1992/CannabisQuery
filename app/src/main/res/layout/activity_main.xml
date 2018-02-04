@@ -6,6 +6,32 @@
     android:orientation="vertical"
     tools:context="com.example.c4q.cannabisproject.MainActivity">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:paddingLeft="225dp"
+            android:paddingBottom="16dp">
+
+            <Button
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@android:drawable/star_big_on"
+                />
+            <Button
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@android:drawable/star_big_on"
+                android:layout_marginLeft="20dp"
+                />
+        </LinearLayout>
+
+    </FrameLayout>
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
@@ -14,7 +40,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="185dp"
         android:gravity="center"
-        android:text="Cannabis Query"
+        android:text="@string/title_name"
         android:textSize="30sp" />
 
 
@@ -25,7 +51,8 @@
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="132dp"
-        android:text="Strains" />
+        android:text="@string/browse_strain"
+        />
 
 
 

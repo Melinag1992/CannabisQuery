@@ -79,7 +79,7 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.DetailScre
 
             Picasso.with(context)
                     .load(strain.getImage())
-                    .resize(400, 400)
+                    .resize(550, 550)
                     .centerCrop()
                     .into(imageV);
             favButton.setOnClickListener(new View.OnClickListener() {

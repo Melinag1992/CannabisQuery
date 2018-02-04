@@ -6,31 +6,6 @@
     android:orientation="vertical"
     tools:context="com.example.c4q.cannabisproject.MainActivity">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:paddingLeft="225dp"
-            android:paddingBottom="16dp">
-
-            <Button
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@android:drawable/star_big_on"
-                />
-            <Button
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@android:drawable/star_big_on"
-                android:layout_marginLeft="20dp"
-                />
-        </LinearLayout>
-
-    </FrameLayout>
 
     <TextView
         android:id="@+id/textView"

@@ -99,7 +99,7 @@ public class CannabisDBHelper extends SQLiteOpenHelper {
 
         long rowID = db.insert(TABLE_NAME, null, contentValues);
         db.close();
-        Log.d(TAG, "insertStrain: new strain added " + rowID + " " + status);
+        Log.d(TAG, "insertStrain: new strain added " + rowID + " " + status+ " " + cannabisStrain.getOcpc());
 
         return true;
     }
